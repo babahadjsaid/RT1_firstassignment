@@ -1,8 +1,9 @@
 # Reaserch Track1 First Assignment
 this repo contains my solution to the given problem, which is to make the robot pair up<br/> Golden and Silver Boxes
 # The pseudo code for the solution is as follows: 
+<pre>
 while there still unpaired golden box repeat<br/>
-<pre>   while we didn't find unpaired Silver box keep<br/>
+  while we didn't find unpaired Silver box keep<br/>
     turning<br/>
   Go And Grab the silver box<br/>
   while we didn't find unpaired Golden box keep<br/>   
@@ -13,3 +14,4 @@ while there still unpaired golden box repeat<br/>
 <br/>
 When done print finished<br/>
 exit<br/>
+</pre>
