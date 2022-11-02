@@ -1,6 +1,6 @@
 # Reaserch Track1 First Assignment
 this repo contains my solution to the given problem, which is to make the robot pair up<br/> Golden and Silver Boxes
-# The pseudo code for the solution is as follows: 
+## The pseudo code for the solution is as follows: 
 <pre>
 while there still unpaired golden box repeat<br/>
   while we didn't find unpaired Silver box keep<br/>
