@@ -57,11 +57,13 @@ def GAGTM(iter):#GoAndGrabTheNearestMarker
     e_po = CToken[0]- d_th
     while(CToken[0] > d_th):
         e_p = (CToken[0]- d_th)/0.05
-        drive(400*(e_p) - 100*(e_p - e_po),0.05)
+        drive(500*(e_p) - 200*(e_p - e_po),0.05)
         CToken = NNPB(iter)
+        if(CToken == -1):
+            return -1
         e_po = e_p
     
-        if(CToken[0] < 2*d_th and iter==1):
+        if(CToken[0] < 1.5*d_th and iter==1):
             time.sleep(0.5)
             R.release()
             history["Golden"].append(CToken[2])
@@ -149,7 +151,8 @@ def main():
         while(NNPB(iter%2)<0):#try to find Silver and then golden box 
             print("looking for a "+StringF[iter%2]+" marker") 
             turn(-10,0.3)# Keep turning left untill finding the desired box
-        GAGTM(iter%2)#Go And Grab/release a silver box
+        if(GAGTM(iter%2) == -1):#Go And Grab/release a silver box
+            continue
         if(iter%2==0):#only if we are looking for a silver box
             """ 
             this is to avoid running on a silver box on the way and to go to the 
@@ -161,3 +164,4 @@ def main():
     print("I finished :)")
     exit()
 
+main()
