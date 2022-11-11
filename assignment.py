@@ -88,14 +88,14 @@ def GAGTNM(iter):#GoAndGrabTheNearestMarker
     CToken = NNPB(iter)
     # rotating to face the box by driving the error of orientation to 0 (used P controler)
     while(CToken[1] > a_th or CToken[1] < -a_th):
-        turn(sign(CToken[1]-a_th) * 10,0.05)
+        turn(sign(CToken[1]-a_th) * (CToken[1]-a_th) * 10,0.05)
         CToken = NNPB(iter)
     
     # going to the box by driving the error of distance to 0 (used PD controler)
     e_po = CToken[0]- d_th
     while(CToken[0] > d_th):
         e_p = (CToken[0]- d_th)/0.05
-        drive(500*(e_p) - 200*(e_p - e_po),0.05)
+        drive(sign(CToken[0]-d_th) * 500*(e_p) - 200*(e_p - e_po),0.05)
         CToken = NNPB(iter)
         if(CToken == -1):
             return -1
@@ -122,7 +122,7 @@ def rotate(speed,angle):
     Args:   speed (int): the speed of the wheels
 	        angle (int): the desired angle in degrees
     """
-    t = CTM(R.width) * ((angle/(180/math.pi))/speed)
+    t = CTM(R.width) * (CTR(angle)/speed)
     turn(speed/2, t)
 
 def Goto(speed,distance):
