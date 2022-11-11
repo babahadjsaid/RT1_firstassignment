@@ -18,6 +18,7 @@ d_th = 0.4
 R = Robot()
 """ instance of the class Robot"""
 
+#                                   Helper Functions
 def sign(a):
     """
     helper function to check the sign of the number a 
@@ -37,6 +38,40 @@ def CTR(angle):
     helper function to convert angles to radians
     """
     return angle *(math.pi/180)
+
+#                                   End Helper Functions
+
+#                                   Given Functions
+
+def drive(speed,seconds):
+    """
+    Function for setting a linear velocity
+
+    Args: speed (int): the speed of the wheels
+	  seconds (int): the time interval
+    """
+    
+    R.motors[0].m0.power = speed
+    R.motors[0].m1.power = speed
+    time.sleep(seconds)
+    R.motors[0].m0.power = 0
+    R.motors[0].m1.power = 0
+def turn(speed, seconds):
+    """
+    Function for setting an angular velocity
+    
+    Args: speed (int): the speed of the wheels
+	  seconds (int): the time interval
+    """
+    R.motors[0].m0.power = speed
+    R.motors[0].m1.power = -speed
+    time.sleep(seconds)
+    R.motors[0].m0.power = 0
+    R.motors[0].m1.power = 0
+
+#                                   End Given Functions
+
+#                                   My Functions
 
 def GAGTM(iter):#GoAndGrabTheNearestMarker
     if(iter!= 0 and iter!=1):
@@ -75,19 +110,7 @@ def GAGTM(iter):#GoAndGrabTheNearestMarker
             break
         
 
-def drive(speed,seconds):
-    """
-    Function for setting a linear velocity
 
-    Args: speed (int): the speed of the wheels
-	  seconds (int): the time interval
-    """
-    
-    R.motors[0].m0.power = speed
-    R.motors[0].m1.power = speed
-    time.sleep(seconds)
-    R.motors[0].m0.power = 0
-    R.motors[0].m1.power = 0
 
 def rotate(speed,angle):
     """
@@ -100,29 +123,17 @@ def rotate(speed,angle):
     turn(speed/2, t)
 
 
-def turn(speed, seconds):
-    """
-    Function for setting an angular velocity
-    
-    Args: speed (int): the speed of the wheels
-	  seconds (int): the time interval
-    """
-    R.motors[0].m0.power = speed
-    R.motors[0].m1.power = -speed
-    time.sleep(seconds)
-    R.motors[0].m0.power = 0
-    R.motors[0].m1.power = 0
 
 def NNPB(iter):
-    if(iter!= 0 and iter!=1):
-        iter = iter%2 # in case the number was not transformed to modulus of 2
-    
     """
     The name of function is short for Nearest Non Paired Box
     the function basically looks for the nearest box that is not visited yet
     Args: 
         iter: a number between 0 (for Silver Box) and 1 (for Golden Box)  
     """
+    if(iter!= 0 and iter!=1):
+        iter = iter%2 # in case the number was not transformed to modulus of 2
+    
     global history
     global Flags
     dist=100
@@ -137,7 +148,7 @@ def NNPB(iter):
             rot_y=token.rot_y
             code = token.info.code
     if dist==100:
-	    return -1
+        return -1
     else:
    	    return dist,rot_y,code
 
@@ -151,17 +162,20 @@ def main():
         while(NNPB(iter%2)<0):#try to find Silver and then golden box 
             print("looking for a "+StringF[iter%2]+" marker") 
             turn(-10,0.3)# Keep turning left untill finding the desired box
+        
         if(GAGTM(iter%2) == -1):#Go And Grab/release a silver box
             continue
+        
         if(iter%2==0):#only if we are looking for a silver box
             """ 
             this is to avoid running on a silver box on the way and to go to the 
-            nearest golden box because in this case the nearest golden box is on the outer circle
+            nearest golden box, because in this case the nearest golden box is on the outer circle
             """
             rotate(60,90) 
-        iter+=1# this variable is needed to alternate between the boxes colors
+        iter+=1# this variable is needed to alternate between the colors of the boxes
     drive(-50,2)
     print("I finished :)")
     exit()
+#                                   End My Functions
 
 main()
