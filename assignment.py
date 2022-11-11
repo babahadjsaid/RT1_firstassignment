@@ -18,7 +18,7 @@ d_th = 0.4
 R = Robot()
 """ instance of the class Robot"""
 
-#                                   Helper Functions
+#                                                    Helper Functions
 def sign(a):
     """
     helper function to check the sign of the number a 
@@ -39,9 +39,9 @@ def CTR(angle):
     """
     return angle *(math.pi/180)
 
-#                                   End Helper Functions
+#                                                    End Helper Functions
 
-#                                   Given Functions
+#                                                    Given Functions
 
 def drive(speed,seconds):
     """
@@ -69,9 +69,9 @@ def turn(speed, seconds):
     R.motors[0].m0.power = 0
     R.motors[0].m1.power = 0
 
-#                                   End Given Functions
+#                                                     End Given Functions
 
-#                                   My Functions
+#                                                     My Functions
 
 def GAGTNM(iter):#GoAndGrabTheNearestMarker
     if(iter!= 0 and iter!=1):
@@ -176,6 +176,6 @@ def main():
     drive(-50,2)
     print("I finished :)")
     exit()
-#                                   End My Functions
+#                                                            End My Functions
 
 main()
