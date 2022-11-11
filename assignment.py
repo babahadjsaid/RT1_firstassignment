@@ -56,6 +56,9 @@ def drive(speed,seconds):
     time.sleep(seconds)
     R.motors[0].m0.power = 0
     R.motors[0].m1.power = 0
+
+
+
 def turn(speed, seconds):
     """
     Function for setting an angular velocity
@@ -122,7 +125,9 @@ def rotate(speed,angle):
     t = CTM(R.width) * ((angle/(180/math.pi))/speed)
     turn(speed/2, t)
 
-
+def Goto(speed,distance):
+    seconds = distance/speed
+    drive(speed,distance)
 
 def NNPB(iter):
     """
