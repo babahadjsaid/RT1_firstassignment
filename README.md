@@ -1,5 +1,5 @@
-# Reaserch Track1 First Assignment
-this repo contains my solution to the given problem, which is to make the robot pair up<br/> Golden and Silver Boxes
+# Research Track 1 First Assignment
+this repository contains my solution to the given problem, which is to make the robot pair up<br/> Golden and Silver Boxes
 ## The pseudo code for the solution is as follows: 
 <pre>
 while there still unpaired golden box repeat<br/>
