@@ -1,17 +1,31 @@
 # Research Track 1 First Assignment
-this repository contains my solution to the given problem, which is to make the robot pair up<br/> Golden and Silver Boxes
+This repository contains my solution to the given problem, which is to make the robot pair up<br/> Golden and Silver Boxes
 ## The pseudo code for the solution is as follows: 
+### Main Function
 <pre>
-while there still unpaired golden box repeat<br/>
-  while we didn't find unpaired Silver box keep<br/>
-    turning<br/>
-  Go And Grab the silver box<br/>
-  while we didn't find unpaired Golden box keep<br/>   
-    turning<br/>
-  Go And release the silver box<br/>
-  if we just released a silver box<br/>
-    rotate 90 degrees<br/>
-<br/>
-When done print finished<br/>
-exit<br/>
+while there still unpaired golden box repeat
+  while we didn't find unpaired Silver/Golden box keep
+    turning
+  Go And Grab/release the silver box
+  if we just released a silver box
+    rotate 90 degrees
+
+When done print finished
+exit
+</pre>
+### Function GAGTNM (Go And Grab The Nearest Marker)
+<pre>
+  while we are not facing the box keep:
+    turning
+  while we did not reach the box keep:
+    driving
+    if we are in the case of silver box and the dist is d_th:
+      grab the box 
+      add it to the list of paired silver 
+      break from the loop 
+    if we are in the case of golden box and the dist is 1.5*d_th:
+      release the box 
+      add it to the list of paired golden
+      break from the loop 
+
 </pre>

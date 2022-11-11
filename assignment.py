@@ -73,7 +73,7 @@ def turn(speed, seconds):
 
 #                                   My Functions
 
-def GAGTM(iter):#GoAndGrabTheNearestMarker
+def GAGTNM(iter):#GoAndGrabTheNearestMarker
     if(iter!= 0 and iter!=1):
         iter = iter%2 # in case the number was not transformed to modulus of 2
     """
@@ -163,7 +163,7 @@ def main():
             print("looking for a "+StringF[iter%2]+" marker") 
             turn(-10,0.3)# Keep turning left untill finding the desired box
         
-        if(GAGTM(iter%2) == -1):#Go And Grab/release a silver box
+        if(GAGTNM(iter%2) == -1):#Go And Grab/release a silver box
             continue
         
         if(iter%2==0):#only if we are looking for a silver box
