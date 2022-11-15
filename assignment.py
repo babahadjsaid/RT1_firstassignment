@@ -77,19 +77,18 @@ def turn(speed, seconds):
 #                                                     My Functions
 
 def GAGTNM(iter):#GoAndGrabTheNearestMarker
-    if(iter!= 0 and iter!=1):
-        iter = iter%2 # in case the number was not transformed to modulus of 2
     """
     function to go to the desired marker 
     Args: 
         iter: a number between 0 (for Silver Box) and 1 (for Golden Box)
     """
+    if(iter!= 0 and iter!=1): #check for false input
+        iter = iter%2 # in case the number was not transformed to modulus of 2
     global history
     CToken = NNPB(iter)
     # rotating to face the box 
-    while(CToken[1] > a_th or CToken[1] < -a_th):
-        turn(sign(CToken[1]-a_th) * 10,0.05)
-        CToken = NNPB(iter)
+    # Example of no while loops which will rotate to the box directly:
+    rotate(sign(CToken[1]) * 50,CToken[1])
     
     # going to the box by driving the error of distance to 0 (used PD controler)
     e_po = CToken[0]- d_th
@@ -101,7 +100,7 @@ def GAGTNM(iter):#GoAndGrabTheNearestMarker
             return -1
         e_po = e_p
     
-        if(CToken[0] < 1.5*d_th and iter==1):
+        if(CToken[0] < 1.2*d_th and iter==1):
             time.sleep(0.5)
             R.release()
             history["Golden"].append(CToken[2])
@@ -166,7 +165,7 @@ def main():
     while(len(history["Golden"])<6):# repeate untill we run out of golden box
         while(NNPB(iter%2)<0):#try to find Silver and then golden box 
             print("looking for a "+StringF[iter%2]+" marker") 
-            turn(-10,0.3)# Keep turning left untill finding the desired box
+            turn(-20,0.03)# Keep turning left untill finding the desired box
         
         if(GAGTNM(iter%2) == -1):#Go And Grab/release a silver box
             continue

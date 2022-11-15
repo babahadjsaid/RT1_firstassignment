@@ -1,31 +1,51 @@
 # Research Track 1 First Assignment
 This repository contains my solution to the given problem, which is to make the robot pair up<br/> Golden and Silver Boxes
-## The pseudo code for the solution is as follows: 
+## The pseudo code for the solution is as follows:
+### Global Variable:
+history: is a dict that contains the history of silver and golden silver 
+StringF: is a list contains the strings of "Silver" and "Golden" for encoding
 ### Main Function
 <pre>
-while there still unpaired golden box repeat
-  while we didn't find unpaired Silver/Golden box keep
-    turning
-  Go And Grab/release the silver box
-  if we just released a silver box
-    rotate 90 degrees
-
-When done print finished
+iter = 0
+While size(history_of_golden[]) < 6
+  while NNPB(iter%2)< 0
+    turn()
+  if(GAGTNM(iter%2) == -1)
+    repeat loop
+  if iter%2==0
+    rotate(90 degrees)
+  iter++
+print finished
 exit
 </pre>
 ### Function GAGTNM (Go And Grab The Nearest Marker)
 <pre>
-  while we are not facing the box keep:
-    turning
-  while we did not reach the box keep:
-    driving
-    if we are in the case of silver box and the dist is d_th:
-      grab the box 
-      add it to the list of paired silver 
-      break from the loop 
-    if we are in the case of golden box and the dist is 1.5*d_th:
-      release the box 
-      add it to the list of paired golden
-      break from the loop 
-
+  dist,angle,T_code = NNPB(iter)
+  Rotate(speed,angle)
+  while dist > d_th:
+    drive(step)
+    if iter == 0 and dist < d_th:
+      R.grab()
+      history.append(T_code)
+      break
+    if dist < 1.2*d_th and iter==1:
+      R.release()
+      history.append(T_code)
+      break
+</pre>
+### Function NNPB (Nearest Non Paired Box)
+<pre>
+define dist,angle,token_code
+for token in R.see()
+  if token_distance < dist and token_Flag == TheFlag and token_code not in history
+    update dist,angle,token_code
+if dist == 100
+  return -1
+else 
+  return dist,angle,token_code
+</pre>
+### rotate function 
+<pre>
+seconds = R.width * (angle/speed)
+turn(speed,angle)
 </pre>
