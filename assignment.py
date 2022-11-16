@@ -124,9 +124,6 @@ def rotate(speed,angle):
     t = CTM(R.width) * (CTR(angle)/speed)
     turn(speed/2, t)
 
-def Goto(speed,distance):
-    seconds = distance/speed
-    drive(speed,distance)
 
 def NNPB(iter):
     """
@@ -183,3 +180,17 @@ def main():
 #                                                            End My Functions
 
 main()
+
+
+#                                                            Possible Improvments
+def Goto(speed,distance):
+    seconds = distance/speed
+    drive(speed,distance)
+
+def DBTM(m1,m2):# distance Between two boxes
+    r1 = m1.centre.polar.length
+    theta1 = m1.centre.polar.rot_y
+    r2 = m2.centre.polar.length
+    theta2 = m2.centre.polar.rot_y
+
+    return math.sqrt(r1**2 + r2**2 - 2*r1*r2*math.cos(CTR(theta2-theta1)))
