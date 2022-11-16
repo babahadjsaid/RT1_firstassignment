@@ -87,9 +87,12 @@ def GAGTNM(iter):#GoAndGrabTheNearestMarker
     global history
     CToken = NNPB(iter)
     # rotating to face the box 
-    # Example of no while loops which will rotate to the box directly:
-    rotate(sign(CToken[1]) * 50,CToken[1])
-    
+    while(CToken[1] > a_th or CToken[1] < -a_th):
+        turn(sign(CToken[1]-a_th)* 10,0.05)
+        CToken = NNPB(iter)
+    # NOTE: an Example of no while loops which will rotate to the box directly:
+    # rotate(sign(CToken[1]) * 50,CToken[1])
+
     # going to the box by driving the error of distance to 0 (used PD controler)
     e_po = CToken[0]- d_th
     while(CToken[0] > d_th):

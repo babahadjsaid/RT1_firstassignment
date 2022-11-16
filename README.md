@@ -52,5 +52,5 @@ turn(speed,angle)
 
 ## Some possible improvment 
 The code can be further improved by many ways, two of them are:<br/>
-  1- By driving and implementing the drive method, so that we can get rid of the nasted while loops.(GoTo function)<br/>
+  1- By driving and implementing the drive method, so that we can get rid of the nasted while loops.(GoTo or rotate functions)<br/>
   2- Can improve the recognition of paired boxes by calculating the distance between two diffrent colored boxes
